@@ -25,8 +25,8 @@ Like its predecessor, Plank Reloaded aims to be the simplest dock on the planet,
   - Workspaces: A graphical workspace switcher
   - Refreshed icons across all docklets
   - Support for third party docklets
-- Updated Matte theme and added MatteLight theme, both based on the [Arian Plank Theme](https://github.com/arianXdev/arian-plank-theme)
-- Added theme options to set the indicator and active item styles
+- Added Matte and Matte-Light themes, based on [Arian Plank Theme](https://github.com/arianXdev/arian-plank-theme)
+- Added theme options to set the indicator, active item, and badge styles
 - General code cleanup and stability improvements
 
 ## Themes
@@ -88,7 +88,7 @@ You can download the latest release .deb package from the [Releases](https://git
 sudo apt-get remove plank libplank-common libplank1
 
 # Install required dependencies
-sudo apt-get install git meson valac libgnome-menu-3.0 libgnome-menu-3-dev libxml2-utils gtk+-3.0 gee-0.8 libbamf3-dev libwnck-3.0 libwnck-3-dev bamfdaemon
+sudo apt-get install git meson gettext valac libgnome-menu-3.0 libgnome-menu-3-dev libxml2-utils gtk+-3.0 gee-0.8 libbamf3-dev libwnck-3.0 libwnck-3-dev bamfdaemon
 
 # Clone the repository
 git clone https://github.com/zquestz/plank-reloaded.git
@@ -101,6 +101,12 @@ meson setup --prefix=/usr build
 meson compile -C build
 sudo meson install -C build
 ```
+
+### openSUSE
+
+There is a community supported openSUSE package available at:
+
+[https://build.opensuse.org/package/show/home:asdhio/plank](https://build.opensuse.org/package/show/home:asdhio/plank)
 
 ### FreeBSD
 
@@ -236,9 +242,20 @@ Please search for existing bugs before reporting new ones.
 
 ## Third Party Docklets
 
-Plank Reloaded encourages developers to write custom docklets! Right now we only have one custom docklet available, but we hope that changes in the future! Feel free to use Picky as an example for writing your own!
+Plank Reloaded encourages developers to write custom docklets! Right now we only have a couple custom docklets available, but we hope that changes in the future! Feel free to use Picky or Last.fm as an example for writing your own!
 
+- [Last.fm](https://github.com/zquestz/lastfm-docklet) - A Last.fm docklet to show recent scrobbles.
 - [Picky](https://github.com/zquestz/picky) - An advanced color picker docklet
+
+## GTK themes
+
+Plank Reloaded supports GTK themes. To use a GTK theme, simply install it and set it as your default theme. Then in settings you can set the Plank Reloaded theme to Gtk+.
+
+Here is a list of themes known to support Plank Reloaded:
+
+- Matcha - https://github.com/zquestz/Matcha-gtk-theme
+- Semabe - https://github.com/sewbej/Plank-Themes
+- WhiteSur - https://github.com/vinceliuice/WhiteSur-gtk-theme
 
 ## API Documentation
 

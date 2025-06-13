@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plank-reloaded\n"
 "Report-Msgid-Bugs-To: https://github.com/zquestz/plank-reloaded/issues\n"
-"POT-Creation-Date: 2025-05-04 20:02-1000\n"
-"PO-Revision-Date: 2025-04-24 07:47\n"
+"POT-Creation-Date: 2025-06-09 14:19-1000\n"
+"PO-Revision-Date: 2025-05-10 04:25\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Language: tr\n"
@@ -203,64 +203,68 @@ msgid "Restrict to Workspace:"
 msgstr "Çalışma Alanını Sınırla:"
 
 #: data/ui/preferences.ui:613
+msgid "Tooltips Enabled:"
+msgstr "İpuçları Etkin:"
+
+#: data/ui/preferences.ui:637
 msgid "Lock Icons:"
 msgstr "Simgeleri Kilitle:"
 
-#: data/ui/preferences.ui:640
+#: data/ui/preferences.ui:664
 msgid "Anchor Docklets:"
 msgstr "Dock Araçları:"
 
-#: data/ui/preferences.ui:667
+#: data/ui/preferences.ui:691
 msgid "Anchor Files:"
 msgstr "Sabitlenebilen Dosyalar:"
 
-#: data/ui/preferences.ui:689
+#: data/ui/preferences.ui:713
 msgid "Behaviour"
 msgstr "Davranış"
 
-#: data/ui/preferences.ui:709
+#: data/ui/preferences.ui:733
 msgid "Docklets"
 msgstr "Uygulamacıklar"
 
-#: docklets/Applications/ApplicationsDockItem.vala:32
+#: docklets/Applications/ApplicationsDockItem.vala:33
 msgid "No applications available"
 msgstr "Hiçbir uygulama mevcut değil"
 
-#: docklets/Applications/ApplicationsDockItem.vala:51
+#: docklets/Applications/ApplicationsDockItem.vala:52
 #: docklets/Applications/ApplicationsDocklet.vala:28
 msgid "Applications"
 msgstr "Uygulamalar"
 
-#: docklets/Applications/ApplicationsDockItem.vala:296
+#: docklets/Applications/ApplicationsDockItem.vala:300
 msgid "Edit Menu"
 msgstr "Menüyü Düzenle"
 
-#: docklets/Applications/ApplicationsDockItem.vala:315
+#: docklets/Applications/ApplicationsDockItem.vala:319
 msgid "Choose Custom Icon"
 msgstr "Özel Simge Seç"
 
 #. If custom icon is set, add option to reset to default
-#: docklets/Applications/ApplicationsDockItem.vala:323
+#: docklets/Applications/ApplicationsDockItem.vala:327
 msgid "Reset to Default Icon"
 msgstr "Varsayılan Simgeye Sıfırla"
 
-#: docklets/Applications/ApplicationsDockItem.vala:333
+#: docklets/Applications/ApplicationsDockItem.vala:337
 msgid "Large Icons"
 msgstr "Büyük Simgeler"
 
-#: docklets/Applications/ApplicationsDockItem.vala:346
+#: docklets/Applications/ApplicationsDockItem.vala:350
 msgid "Select Custom Icon"
 msgstr "Özel Simge Seç"
 
-#: docklets/Applications/ApplicationsDockItem.vala:349
+#: docklets/Applications/ApplicationsDockItem.vala:353
 msgid "Cancel"
 msgstr "İptal"
 
-#: docklets/Applications/ApplicationsDockItem.vala:350
+#: docklets/Applications/ApplicationsDockItem.vala:354
 msgid "Select"
 msgstr "Seç"
 
-#: docklets/Applications/ApplicationsDockItem.vala:368
+#: docklets/Applications/ApplicationsDockItem.vala:372
 msgid "Image Files"
 msgstr "Görüntü Dosyaları"
 
@@ -423,7 +427,7 @@ msgid "Have a look at your trash!"
 msgstr "Çöp kutunuza bir göz atın!"
 
 #: docklets/Separator/SeparatorDockItem.vala:197
-#: docklets/Workspaces/WorkspacesDockItem.vala:556
+#: docklets/Workspaces/WorkspacesDockItem.vala:560
 msgid "_Invert Color"
 msgstr "_Rengi Tersine Çevir"
 
@@ -452,12 +456,12 @@ msgstr "Çalışma Alanları"
 msgid "Workspace %d of %d"
 msgstr "Çalışma Alanı %d / %d"
 
-#: docklets/Workspaces/WorkspacesDockItem.vala:536
+#: docklets/Workspaces/WorkspacesDockItem.vala:538
 #, c-format
 msgid "Workspace %d"
 msgstr "Çalışma Alanı %d"
 
-#: docklets/Workspaces/WorkspacesDockItem.vala:563
+#: docklets/Workspaces/WorkspacesDockItem.vala:567
 msgid "_Live Previews"
 msgstr "_Canlı Önizlemeler"
 
@@ -491,20 +495,20 @@ msgstr ""
 "  sakir.mehmetoglu https://launchpad.net/~sakir-mehmetoglu-a\n"
 "  Özgür BASKIN https://launchpad.net/~ozgur-baskin"
 
-#: lib/Items/ApplicationDockItem.vala:406 lib/Items/FileDockItem.vala:351
+#: lib/Items/ApplicationDockItem.vala:434 lib/Items/FileDockItem.vala:351
 #: lib/Items/FileDockItem.vala:372
 msgid "_Keep in Dock"
 msgstr "_Başlatıcıda tut"
 
-#: lib/Items/ApplicationDockItem.vala:414
+#: lib/Items/ApplicationDockItem.vala:442
 msgid "_Close All"
 msgstr "Hepsini _Kapat"
 
-#: lib/Items/ApplicationDockItem.vala:414
+#: lib/Items/ApplicationDockItem.vala:442
 msgid "_Close"
 msgstr "_Kapat"
 
-#: lib/Items/ApplicationDockItem.vala:497
+#: lib/Items/ApplicationDockItem.vala:581
 #, c-format
 msgid "Drop to open with %s"
 msgstr "%s ile açmak için üzerine bırakın"
@@ -569,6 +573,6 @@ msgstr "_Hakkında"
 msgid "_Quit"
 msgstr "_Çık"
 
-#: lib/Widgets/PreferencesWindow.vala:93
+#: lib/Widgets/PreferencesWindow.vala:95
 msgid "Preferences"
 msgstr "Tercihler"

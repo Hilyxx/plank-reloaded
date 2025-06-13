@@ -278,19 +278,47 @@ namespace Plank {
       unowned DefaultApplicationDockItemProvider? default_provider = (Container as DefaultApplicationDockItemProvider);
       int window_count = Helpers.window_count (App, default_provider);
 
+      bool trigger_update = false;
+
       if (window_count == 0) {
         if (Indicator != IndicatorState.NONE) {
           Indicator = IndicatorState.NONE;
+        }
+        if (event == UpdateIndicatorEvent.WINDOW_REMOVED) {
+          trigger_update = true;
         }
       } else if (window_count == 1) {
         if (Indicator != IndicatorState.SINGLE) {
           Indicator = IndicatorState.SINGLE;
         }
+        if (event != UpdateIndicatorEvent.WINDOW_REMOVED) {
+          trigger_update = true;
+        }
       } else {
         if (Indicator != IndicatorState.SINGLE_PLUS) {
           Indicator = IndicatorState.SINGLE_PLUS;
         }
+        if (event == UpdateIndicatorEvent.RUNNING_CHANGED) {
+          trigger_update = true;
+        }
       }
+
+      if (event == UpdateIndicatorEvent.EXTERNAL) {
+        return;
+      }
+
+      if (!trigger_update) {
+        return;
+      }
+
+      // If the item isn't transient, then it will always be on the dock,
+      // no need to update visible elements.
+      unowned TransientDockItem? transient = (this as TransientDockItem);
+      if (transient == null) {
+        return;
+      }
+
+      default_provider?.trigger_update_visible_elements (false);
     }
 
     inline void reset_application_status () {
@@ -343,9 +371,9 @@ namespace Plank {
       unowned DefaultApplicationDockItemProvider? default_provider = (Container as DefaultApplicationDockItemProvider);
 
       if (direction == Gdk.ScrollDirection.UP || direction == Gdk.ScrollDirection.LEFT) {
-        WindowControl.focus_previous (App, event_time, Helpers.current_workspace_only(default_provider));
+        WindowControl.focus_previous (App, event_time, Helpers.current_workspace_only (default_provider));
       } else {
-        WindowControl.focus_next (App, event_time, Helpers.current_workspace_only(default_provider));
+        WindowControl.focus_next (App, event_time, Helpers.current_workspace_only (default_provider));
       }
 
       return AnimationType.DARKEN;
@@ -412,7 +440,7 @@ namespace Plank {
       var event_time = Gtk.get_current_event_time ();
       if (is_running () && window_count > 0) {
         var item = create_menu_item ((window_count > 1 ? _("_Close All") : _("_Close")), "window-close-symbolic;;window-close");
-        if (Helpers.current_workspace_only(default_provider)) {
+        if (Helpers.current_workspace_only (default_provider)) {
           item.activate.connect (() => WindowControl.close_all_in_workspace (App, event_time));
         } else {
           item.activate.connect (() => WindowControl.close_all (App, event_time));
@@ -459,29 +487,85 @@ namespace Plank {
         unowned Wnck.Workspace? active_workspace = Wnck.Screen.get_default ().get_active_workspace ();
 
         foreach (var window in windows) {
-          if (window == null || window.get_transient () != null || !window.is_user_visible ())
-            continue;
-
-          if (cw_only && WindowControl.get_window_workspace(window) != active_workspace) {
+          if (window == null || window.get_transient () != null || !window.is_user_visible ()) {
             continue;
           }
 
-          Gtk.MenuItem window_item;
+          if (cw_only && WindowControl.get_window_workspace (window) != active_workspace) {
+            continue;
+          }
+
           var pbuf = WindowControl.get_window_icon (window);
           var window_name = window.get_name ();
           window_name = shorten_window_name (window_name);
-
           window_name = Helpers.truncate_middle (window_name, MAX_WINDOW_NAME_LENGTH);
 
-          if (pbuf != null)
-            window_item = create_literal_menu_item_with_pixbuf (window_name, pbuf);
-          else
-            window_item = create_literal_menu_item (window_name, Icon);
+          var window_item = new Gtk.MenuItem ();
+          var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+          box.margin_end = 5;
 
-          if (window.is_active ())
-            window_item.set_sensitive (false);
-          else
-            window_item.activate.connect (() => WindowControl.focus_window (window, event_time));
+          Gtk.Image image;
+          if (pbuf != null) {
+            int width, height;
+            Gtk.icon_size_lookup (Gtk.IconSize.MENU, out width, out height);
+
+            if (width != pbuf.width || height != pbuf.height) {
+              pbuf = DrawingService.ar_scale (pbuf, width, height);
+            }
+            image = new Gtk.Image.from_pixbuf (pbuf);
+          } else {
+            image = new Gtk.Image.from_icon_name (Icon, Gtk.IconSize.MENU);
+          }
+
+          var label = new Gtk.Label (window_name);
+          label.halign = Gtk.Align.START;
+          label.valign = Gtk.Align.CENTER;
+          label.hexpand = true;
+
+          var close_icon = new Gtk.Image.from_icon_name ("window-close-symbolic", Gtk.IconSize.MENU);
+
+          box.pack_start (image, false, false, 0);
+          box.pack_start (label, true, true, 0);
+          box.pack_end (close_icon, false, false, 0);
+
+          window_item.add (box);
+          window_item.show_all ();
+
+          bool was_close_click = false;
+
+          window_item.button_release_event.connect ((event) => {
+            Gtk.Allocation close_allocation;
+            close_icon.get_allocation (out close_allocation);
+
+            int close_x, close_y;
+            if (close_icon.translate_coordinates (window_item, 0, 0, out close_x, out close_y)) {
+              if (event.x >= close_x &&
+                  event.x <= close_x + close_allocation.width &&
+                  event.y >= close_y &&
+                  event.y <= close_y + close_allocation.height) {
+
+                was_close_click = true;
+                WindowControl.close_window(window, event_time);
+              }
+            }
+
+            return false;
+          });
+
+          window_item.activate.connect (() => {
+            if (was_close_click) {
+              return;
+            }
+
+            if (!window.is_active ()) {
+              WindowControl.focus_window (window, event_time);
+            }
+          });
+
+          if (window.is_active ()) {
+            label.set_sensitive (false);
+            image.set_sensitive (false);
+          }
 
           items.add (window_item);
         }

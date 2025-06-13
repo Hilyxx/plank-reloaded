@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plank-reloaded\n"
 "Report-Msgid-Bugs-To: https://github.com/zquestz/plank-reloaded/issues\n"
-"POT-Creation-Date: 2025-05-04 20:02-1000\n"
-"PO-Revision-Date: 2025-04-24 07:46\n"
+"POT-Creation-Date: 2025-06-09 14:19-1000\n"
+"PO-Revision-Date: 2025-05-10 04:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -200,64 +200,68 @@ msgid "Restrict to Workspace:"
 msgstr "限制在工作區："
 
 #: data/ui/preferences.ui:613
+msgid "Tooltips Enabled:"
+msgstr "工具提示已啟用："
+
+#: data/ui/preferences.ui:637
 msgid "Lock Icons:"
 msgstr "鎖定圖示："
 
-#: data/ui/preferences.ui:640
+#: data/ui/preferences.ui:664
 msgid "Anchor Docklets:"
 msgstr "錨定小程式："
 
-#: data/ui/preferences.ui:667
+#: data/ui/preferences.ui:691
 msgid "Anchor Files:"
 msgstr "錨定檔案："
 
-#: data/ui/preferences.ui:689
+#: data/ui/preferences.ui:713
 msgid "Behaviour"
 msgstr "行為"
 
-#: data/ui/preferences.ui:709
+#: data/ui/preferences.ui:733
 msgid "Docklets"
 msgstr "小程式"
 
-#: docklets/Applications/ApplicationsDockItem.vala:32
+#: docklets/Applications/ApplicationsDockItem.vala:33
 msgid "No applications available"
 msgstr "沒有可用的應用程式"
 
-#: docklets/Applications/ApplicationsDockItem.vala:51
+#: docklets/Applications/ApplicationsDockItem.vala:52
 #: docklets/Applications/ApplicationsDocklet.vala:28
 msgid "Applications"
 msgstr "應用程式"
 
-#: docklets/Applications/ApplicationsDockItem.vala:296
+#: docklets/Applications/ApplicationsDockItem.vala:300
 msgid "Edit Menu"
 msgstr "編輯選單"
 
-#: docklets/Applications/ApplicationsDockItem.vala:315
+#: docklets/Applications/ApplicationsDockItem.vala:319
 msgid "Choose Custom Icon"
 msgstr "選擇自定義圖標"
 
 #. If custom icon is set, add option to reset to default
-#: docklets/Applications/ApplicationsDockItem.vala:323
+#: docklets/Applications/ApplicationsDockItem.vala:327
 msgid "Reset to Default Icon"
 msgstr "重設為預設圖示"
 
-#: docklets/Applications/ApplicationsDockItem.vala:333
+#: docklets/Applications/ApplicationsDockItem.vala:337
 msgid "Large Icons"
 msgstr "大圖示"
 
-#: docklets/Applications/ApplicationsDockItem.vala:346
+#: docklets/Applications/ApplicationsDockItem.vala:350
 msgid "Select Custom Icon"
 msgstr "選擇自訂圖示"
 
-#: docklets/Applications/ApplicationsDockItem.vala:349
+#: docklets/Applications/ApplicationsDockItem.vala:353
 msgid "Cancel"
 msgstr "取消"
 
-#: docklets/Applications/ApplicationsDockItem.vala:350
+#: docklets/Applications/ApplicationsDockItem.vala:354
 msgid "Select"
 msgstr "選擇"
 
-#: docklets/Applications/ApplicationsDockItem.vala:368
+#: docklets/Applications/ApplicationsDockItem.vala:372
 msgid "Image Files"
 msgstr "圖像檔案"
 
@@ -419,7 +423,7 @@ msgid "Have a look at your trash!"
 msgstr "看看您的垃圾桶！"
 
 #: docklets/Separator/SeparatorDockItem.vala:197
-#: docklets/Workspaces/WorkspacesDockItem.vala:556
+#: docklets/Workspaces/WorkspacesDockItem.vala:560
 msgid "_Invert Color"
 msgstr "_Invert 顏色"
 
@@ -448,12 +452,12 @@ msgstr "工作區"
 msgid "Workspace %d of %d"
 msgstr "工作區 %d/%d"
 
-#: docklets/Workspaces/WorkspacesDockItem.vala:536
+#: docklets/Workspaces/WorkspacesDockItem.vala:538
 #, c-format
 msgid "Workspace %d"
 msgstr "工作區 %d"
 
-#: docklets/Workspaces/WorkspacesDockItem.vala:563
+#: docklets/Workspaces/WorkspacesDockItem.vala:567
 msgid "_Live Previews"
 msgstr "_即時預覽"
 
@@ -479,20 +483,20 @@ msgstr ""
 "  Rico Tzschichholz https://launchpad.net/~ricotz\n"
 "  shoting https://launchpad.net/~shoting"
 
-#: lib/Items/ApplicationDockItem.vala:406 lib/Items/FileDockItem.vala:351
+#: lib/Items/ApplicationDockItem.vala:434 lib/Items/FileDockItem.vala:351
 #: lib/Items/FileDockItem.vala:372
 msgid "_Keep in Dock"
 msgstr "留在 Dock 中(_K)"
 
-#: lib/Items/ApplicationDockItem.vala:414
+#: lib/Items/ApplicationDockItem.vala:442
 msgid "_Close All"
 msgstr "全部關閉(_C)"
 
-#: lib/Items/ApplicationDockItem.vala:414
+#: lib/Items/ApplicationDockItem.vala:442
 msgid "_Close"
 msgstr "關閉(_C)"
 
-#: lib/Items/ApplicationDockItem.vala:497
+#: lib/Items/ApplicationDockItem.vala:581
 #, c-format
 msgid "Drop to open with %s"
 msgstr "拖曳來以 %s 開啟"
@@ -557,6 +561,6 @@ msgstr "_關於"
 msgid "_Quit"
 msgstr "_離開"
 
-#: lib/Widgets/PreferencesWindow.vala:93
+#: lib/Widgets/PreferencesWindow.vala:95
 msgid "Preferences"
 msgstr "偏好設定"

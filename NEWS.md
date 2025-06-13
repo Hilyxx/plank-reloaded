@@ -2,6 +2,37 @@
 
 **Note:** There is no stability of ABI/API until further notice!
 
+## 0.11.131 "Reloaded" (2025-06-09)
+
+- Improve reliability of Steam menu activation workaround
+
+## 0.11.130 "Reloaded" (2025-06-09)
+
+- Fix Steam menu activation unhiding dock
+
+## 0.11.129 "Reloaded" (2025-06-08)
+
+- Update Application Docklet menu icons on theme change
+- Support custom Workspace names
+
+## 0.11.128 "Reloaded" (2025-05-22)
+
+- Add close buttons to context menu window list
+
+## 0.11.127 "Reloaded" (2025-05-10)
+
+- Update reveal logic when using GapSize > 0
+- Reduce pressure threshold for "Pressure Reveal"
+
+## 0.11.126 "Reloaded" (2025-05-09)
+
+- Fix regression showing unpinned items
+
+## 0.11.125 "Reloaded" (2025-05-09)
+
+- Added option to disable tooltips
+- Removed docs from source package
+
 ## 0.11.124 "Reloaded" (2025-05-04)
 
 - Updated theme engine to support badge theming options

@@ -58,8 +58,7 @@ namespace Plank {
     const uint UPDATE_TIMEOUT = 200U;
 
 #if HAVE_BARRIERS
-    // FIXME Use an IconSize-based value?
-    const double PRESSURE_THRESHOLD = 60.0;
+    const double PRESSURE_THRESHOLD = 50.0;
     const uint PRESSURE_TIMEOUT = 1000U;
 #endif
 
@@ -100,6 +99,10 @@ namespace Plank {
     bool active_maximized_window_intersect = false;
     bool dialog_windows_intersect = false;
     Gdk.Rectangle last_window_rect;
+
+    string? last_window_name = null;
+    ulong last_window_xid = 0;
+    int last_window_workspace_id = -1;
 
 #if HAVE_BARRIERS
     XFixes.PointerBarrier barrier = 0;
@@ -434,6 +437,7 @@ namespace Plank {
       var active_intersect = false;
       var new_active_window_intersect = false;
       var active_maximized_intersect = false;
+      var ignore_update = false;
       unowned Wnck.Screen screen = Wnck.Screen.get_default ();
       unowned Wnck.Window? active_window = screen.get_active_window ();
       unowned Wnck.Workspace? active_workspace = screen.get_active_workspace ();
@@ -472,6 +476,27 @@ namespace Plank {
               break;
           }
         }
+
+        last_window_name = active_window.get_name ();
+        last_window_xid = active_window.get_xid ();
+        last_window_workspace_id = active_workspace.get_number ();
+      } else {
+        // Hack to prevent dock from showing up on Steam menu clicks.
+        if (last_window_name == "Steam") {
+          unowned Wnck.Window? existing_window = Wnck.Window.get (last_window_xid);
+
+          if (existing_window != null && last_window_workspace_id == active_workspace.get_number ()) {
+            ignore_update = true;
+          } else {
+            last_window_name = null;
+            last_window_xid = 0;
+            last_window_workspace_id = -1;
+          }
+        }
+      }
+
+      if (ignore_update) {
+        return;
       }
 
       window_intersect = intersect;
@@ -640,7 +665,7 @@ namespace Plank {
           distance = Math.fabs (barrier_event.dy);
           slide = Math.fabs (barrier_event.dx);
           break;
-        case Gtk.PositionType.LEFT:
+        case Gtk.PositionType.LEFT :
         case Gtk.PositionType.RIGHT:
           distance = Math.fabs (barrier_event.dx);
           slide = Math.fabs (barrier_event.dy);
